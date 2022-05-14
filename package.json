@@ -1,0 +1,41 @@
+{
+	"name": "fe_codingchallenge-TutoDS",
+	"version": "1.0.0",
+	"main": "index.js",
+	"repository": "git@github.com:xing/fe_codingchallenge-TutoDS.git",
+	"author": "Daniel Sousa @TutoDS <jdaniel.asousa@gmail.com>",
+	"license": "MIT",
+	"scripts": {
+		"dev": "concurrently --kill-others \"cd ./api && yarn api\" \"cd ./frontend && yarn dev\"",
+		"prepare": "husky install && npx husky add .husky/pre-commit \"npx lint-staged\"",
+		"lint": "eslint --fix \"./frontend/src/**/*.{tsx,ts,js,jsx}\""
+	},
+	"dependencies": {
+		"concurrently": "^7.0.0"
+	},
+	"devDependencies": {
+		"@typescript-eslint/eslint-plugin": "^5.16.0",
+		"@typescript-eslint/parser": "^5.16.0",
+		"eslint": "^8.12.0",
+		"eslint-config-prettier": "^8.5.0",
+		"eslint-plugin-import": "^2.25.4",
+		"eslint-plugin-jsx-a11y": "^6.5.1",
+		"eslint-plugin-prettier": "^4.0.0",
+		"eslint-plugin-react": "^7.29.4",
+		"eslint-plugin-simple-import-sort": "^7.0.0",
+		"husky": "s^7.0.4",
+		"lint-staged": "^12.3.7",
+		"prettier": "^2.6.1"
+	},
+	"lint-staged": {
+		"./frontend/src/**/*.{js,ts,tsx,jsx}": [
+			"prettier --write .",
+			"eslint --fix \"./frontend/src/**/*.{tsx,ts,js,jsx}\""
+		]
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "echo \"[Format & Lint]\" && lint-staged"
+		}
+	}
+}
